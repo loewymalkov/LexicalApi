@@ -13,28 +13,25 @@ namespace ApiTest
   {
     static void Main()
     {
-      var apiCallTask = ApiHelper.ApiCall("[YOUR-API-KEY-HERE]");
+      var apiCallTask = ApiHelper.ApiCall();
       var result = apiCallTask.Result;
 
-      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-      List<Word> wordList = JsonConvert.DeserializeObject<List<Word>>(jsonResponse["words"].ToString());
-
-      foreach (Word word in wordList)
+      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+      
+      List<Word> wordList = new List<Word>();
+      foreach(JObject jo in jsonResponse)
       {
-        Console.WriteLine($"Name: {word.Name}");
-        Console.WriteLine($"Rating: {word.Rating}");
+        Word newWord = JsonConvert.DeserializeObject<Word>(jo.ToString());
+        Console.WriteLine(newWord.name);
+        
       }
+      // List<Word> wordList = JsonConvert.DeserializeObject<List<Word>>(jsonResponse.ToString());
+ 
+      // foreach (Word word in wordList)
+      // {
+      //   Console.WriteLine($"Name: {word.Name}");
+      //   Console.WriteLine($"Rating: {word.Rating}");
+      // }
     }
-  }
-
-  class ApiHelper
-  {
-    public static async Task<string> ApiCall(string apiKey)
-    {
-      RestClient client = new RestClient("http://localhost:5000/api/words");
-      RestRequest request = new RestRequest($"home.json?api-key={apiKey}", Method.GET);
-      var response = await client.ExecuteTaskAsync(request);
-      return response.Content;
-     }
   }
 }
