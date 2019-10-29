@@ -18,12 +18,16 @@ namespace Lexical.Controllers
         }
 
         [HttpGet]
-        public ActionResult <IEnumerable<Word>> Get (string descriptions, int rating)
+        public ActionResult <IEnumerable<Word>> Get (string names, int rating)
         {
             var query = _db.Words.AsQueryable();
-            if(descriptions != null)
+            if(names != null)
             {
-                query = query.Where(entry => entry.Description == descriptions);
+                query = query.Where(entry => entry.Name == names);
+            }
+            if(rating != 0)
+            {
+                query = query.Where(entry => entry.Rating == rating);
             }
             return query.ToList();
         }
@@ -34,6 +38,29 @@ namespace Lexical.Controllers
         _db.Words.Add(word);
         _db.SaveChanges();
         }
+         
+        [HttpGet("{id}")]
+        public ActionResult<Word> Get(int id)
+        {
+        return _db.Words.FirstOrDefault(entry => entry.WordId == id);
+        }
+
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Word word)
+        {
+        word.WordId = id;
+        _db.Entry(word).State = EntityState.Modified;
+        _db.SaveChanges();
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        var wordToDelete = _db.Words.FirstOrDefault(entry => entry.WordId == id);
+        _db.Words.Remove(wordToDelete);
+        _db.SaveChanges();
+        }
+
     }
 
 }

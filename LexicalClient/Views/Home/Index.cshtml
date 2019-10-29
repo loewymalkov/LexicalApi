@@ -1,0 +1,12 @@
+<h1>All Words:</h1>
+
+<ol>
+@foreach (Word word in Model)
+{
+    <ul>
+        <li>Name: @word.Name</li>
+        <li>Rating: @word.Rating</li>
+    </ul>
+    <br>
+}
+</ol>
