@@ -27,7 +27,7 @@ namespace Lexical.Controllers
                 query = query.Where(w => w.WordId == wordId);
             }
             if(name != null)
-            {
+            {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
                 query = query.Where(w => w.Name == name);
             }
             if(rating != 0)
@@ -51,8 +51,8 @@ namespace Lexical.Controllers
                     int MIN_RANGE = ((page-1) * WORDS_PER_PAGE) + 1;
                     int RANGE = WORDS_PER_PAGE - 1;
                     if(MIN_RANGE + RANGE > NUMBER_OF_WORDS && MIN_RANGE < NUMBER_OF_WORDS)
-                    {
-                        RANGE = (NUMBER_OF_WORDS-MIN_RANGE) +1;
+                    {               
+                        RANGE = (NUMBER_OF_WORDS-MIN_RANGE) +1;                
                     }
                     int[] RANGE_ARRAY = Enumerable.Range(MIN_RANGE, RANGE).ToArray();
                     query = query.Where(w => RANGE_ARRAY.Contains(w.WordId));
