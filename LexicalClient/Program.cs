@@ -13,25 +13,6 @@ namespace ApiTest
   {
     static void Main()
     {
-      var apiCallTask = ApiHelper.ApiCall();
-      var result = apiCallTask.Result;
-
-      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-      
-      List<Word> wordList = new List<Word>();
-      foreach(JObject jo in jsonResponse)
-      {
-        Word newWord = JsonConvert.DeserializeObject<Word>(jo.ToString());
-        Console.WriteLine(newWord.name);
-        
-      }
-      // List<Word> wordList = JsonConvert.DeserializeObject<List<Word>>(jsonResponse.ToString());
- 
-      // foreach (Word word in wordList)
-      // {
-      //   Console.WriteLine($"Name: {word.Name}");
-      //   Console.WriteLine($"Rating: {word.Rating}");
-      // }
     }
   }
 }

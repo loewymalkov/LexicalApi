@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Lexical.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Lexical.Controllers
 {
@@ -18,16 +19,44 @@ namespace Lexical.Controllers
         }
 
         [HttpGet]
-        public ActionResult <IEnumerable<Word>> Get (string names, int rating)
+        public ActionResult <IEnumerable<Word>> Get (int wordId, string name, double rating, string wordList, int page)
         {
             var query = _db.Words.AsQueryable();
-            if(names != null)
+            if(wordId != 0)
             {
-                query = query.Where(entry => entry.Name == names);
+                query = query.Where(w => w.WordId == wordId);
+            }
+            if(name != null)
+            {
+                query = query.Where(w => w.Name == name);
             }
             if(rating != 0)
             {
-                query = query.Where(entry => entry.Rating == rating);
+                query = query.Where(w => w.Rating == rating);
+            }
+            if(wordList != null)
+            {
+                wordList = wordList.ToLower();
+                string[] array = wordList.Split(",");
+                query = query.Where(w => array.Contains(w.Name));
+            }
+            if(page != 0)
+            {
+                int WORDS_PER_PAGE = 30;
+                int NUMBER_OF_WORDS = _db.Words.ToList().Count;
+                int MAX_PAGE = (int) Math.Ceiling((double)NUMBER_OF_WORDS/(double)WORDS_PER_PAGE);
+                Console.WriteLine(MAX_PAGE);
+                if(page <= MAX_PAGE)
+                {   
+                    int MIN_RANGE = ((page-1) * WORDS_PER_PAGE) + 1;
+                    int RANGE = WORDS_PER_PAGE - 1;
+                    if(MIN_RANGE + RANGE > NUMBER_OF_WORDS && MIN_RANGE < NUMBER_OF_WORDS)
+                    {
+                        RANGE = (NUMBER_OF_WORDS-MIN_RANGE) +1;
+                    }
+                    int[] RANGE_ARRAY = Enumerable.Range(MIN_RANGE, RANGE).ToArray();
+                    query = query.Where(w => RANGE_ARRAY.Contains(w.WordId));
+                }
             }
             return query.ToList();
         }
