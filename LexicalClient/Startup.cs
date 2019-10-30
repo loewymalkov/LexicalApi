@@ -51,6 +51,7 @@ namespace LexicalClient
 
             // app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseDefaultFiles();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using LexicalClient.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace LexicalClient
 {
@@ -14,22 +14,11 @@ namespace LexicalClient
     {
         public static void Main(string[] args)
         {
-            // var client = new RestClient ("http://localhost:5000/api/words");
-            // var request = new RestRequest ("resource/{id}", Method.POST);
-            // var word = new {Name = "dude", Rating=5, RatingCount = 0};
-            // request.AddJsonBody(word);
-            // var response = client.Get(request);
-
-            // Console.WriteLine(response.ToString());
-
             CreateWebHostBuilder(args).Build().Run();
-
-
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-                  WebHost.CreateDefaultBuilder(args)
-                      .UseStartup<Startup>();
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
     }
 }
-
