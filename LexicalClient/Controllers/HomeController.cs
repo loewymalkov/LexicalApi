@@ -7,7 +7,7 @@ namespace LexicalClient.Controllers
     {
         public IActionResult Index()
         {
-            var allWords = Word.GetWords("[YOUR-API-KEY-HERE]");
+            var allWords = Word.GetWords();
             return View(allWords);
         }
     }
