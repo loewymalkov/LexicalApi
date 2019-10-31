@@ -6,8 +6,8 @@
 @foreach (Word word in Model)
 {
     <ul>
-        <li>Name: @word.name</li>
-        <li>Rating: @word.rating</li>
+        <li>@Html.ActionLink(@word.name, "Test", new Word {wordId = word.wordId, name = word.name, rating = word.rating, ratingCount = word.ratingCount })</li>
+        
     </ul>
     <br>
 }
