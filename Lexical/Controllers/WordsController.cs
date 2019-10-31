@@ -46,7 +46,7 @@ namespace Lexical.Controllers
                     {
                         Random rand = new Random();
                         double randomNumber = rand.Next(1,6);
-                        var newWord = new {Name= wo, Rating= randomNumber, RatingCount= 0};
+                        Word newWord = new Word{Name= wo, Rating= randomNumber, RatingCount= 0};
                         _db.Add(newWord);
                         _db.SaveChanges();
                     }
@@ -58,7 +58,6 @@ namespace Lexical.Controllers
                 int WORDS_PER_PAGE = 30;
                 int NUMBER_OF_WORDS = _db.Words.ToList().Count;
                 int MAX_PAGE = (int)Math.Ceiling((double)NUMBER_OF_WORDS / (double)WORDS_PER_PAGE);
-                Console.WriteLine(MAX_PAGE);
                 if (page <= MAX_PAGE)
                 {
                     int MIN_RANGE = ((page - 1) * WORDS_PER_PAGE) + 1;
