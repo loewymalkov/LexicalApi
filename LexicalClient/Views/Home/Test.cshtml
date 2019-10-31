@@ -1,0 +1,15 @@
+@using LexicalClient.Models;
+@model Word;
+<h1>All Words:</h1>
+
+<ol>
+
+    <ul>
+        <li>Name: @Model.name</li>
+        <li>Rating: @Model.rating</li>
+        <li>Rating Count: @Model.ratingCount</li>
+    </ul>
+
+</ol>
+
+<h3>@Html.ActionLink("Add a word", "Rating")</h3>

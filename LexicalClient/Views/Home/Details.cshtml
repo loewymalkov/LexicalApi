@@ -1,0 +1,9 @@
+@using LexicalClient.Models;
+@model Word;
+<h1>@(Model.name)</h1>
+
+<h3>@($"Rating: {Model.rating}")</h3>
+<h3>@($"Number of Votes: {Model.ratingCount}")</h3>
+
+
+<h3>@Html.ActionLink("Rate word!", "Rating")</h3>
