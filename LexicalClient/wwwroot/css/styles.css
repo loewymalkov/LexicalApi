@@ -1,4 +1,6 @@
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: rgb(212, 227, 233);
+    background: linear-gradient(to left top, rgb(31, 120, 236), rgb(179, 28, 179)) fixed;    
+    color: aliceblue;
 }
+

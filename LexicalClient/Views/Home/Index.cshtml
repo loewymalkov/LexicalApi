@@ -6,11 +6,11 @@
 @foreach (Word word in Model)
 {
     <ul>
-        <li>@Html.ActionLink(@word.name, "Test", new Word {wordId = word.wordId, name = word.name, rating = word.rating, ratingCount = word.ratingCount })</li>
+        <li>@Html.ActionLink(@word.name, "Details", new Word {wordId = word.wordId, name = word.name, rating = word.rating, ratingCount = word.ratingCount }, new {style = "color:white"})</li>
         
     </ul>
     <br>
 }
 </ol>
 
-<h3>@Html.ActionLink("Add a word", "Rating")</h3>
+<button class="btn btn-default">@Html.ActionLink("Add a word", "Rating", new {style = "color:white"})</button>

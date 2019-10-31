@@ -1,9 +1,16 @@
 @using LexicalClient.Models;
 @model Word;
-<h1>@(Model.name)</h1>
+<h1>All Words:</h1>
 
-<h3>@($"Rating: {Model.rating}")</h3>
-<h3>@($"Number of Votes: {Model.ratingCount}")</h3>
+<ol>
 
+    <ul>
+        <li>Word: @Model.name</li>
+        <li>Rating: @Model.rating</li>
+        <li>Rating Count: @Model.ratingCount</li>
+    </ul>
 
-<h3>@Html.ActionLink("Rate word!", "Rating")</h3>
+</ol>
+
+<button class="btn btn-default">@Html.ActionLink("Add a word", "Rating", new {style = "color:white"})</button>
+<button class="btn btn-default">@Html.ActionLink("Back To Home", "Index", new {style = "color:white"})</button>

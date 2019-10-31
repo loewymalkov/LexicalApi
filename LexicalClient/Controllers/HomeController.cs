@@ -37,10 +37,10 @@ namespace LexicalClient.Controllers
         public ActionResult Rating(Word word)
         {
             var targetWord = Word.PutWord(word);
-            return RedirectToAction("Test", "Home", targetWord);
+            return RedirectToAction("Details", "Home", targetWord);
         }
 
-        public ActionResult Test(Word word)
+        public ActionResult Details (Word word)
         {
             return View(word);
         }

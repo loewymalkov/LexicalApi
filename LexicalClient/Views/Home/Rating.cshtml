@@ -17,4 +17,4 @@ var r = ViewBag.rating as List<SelectListItem>;
     @Html.HiddenFor(model => model.ratingCount, new {Value="1"});
     <button type="submit" class="btn btn-info">Add Rating</button>
 }
-<button class="btn btn-default">@Html.ActionLink("Back To Home", "Index")</button>
+<button class="btn btn-default">@Html.ActionLink("Back To Home", "Index", new {style = "color:white"})</button>
