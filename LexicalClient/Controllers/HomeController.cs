@@ -38,9 +38,6 @@ namespace LexicalClient.Controllers
         {
             var targetWord = Word.PutWord(word);
             return RedirectToAction("Test", "Home", targetWord);
-
-
-
         }
 
         public ActionResult Test(Word word)
